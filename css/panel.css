@@ -1,0 +1,209 @@
+/* ==================== */
+/* Side Panel            */
+/* ==================== */
+
+#verbs-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  max-width: 100%;
+  height: 100vh;
+  background: var(--white);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  z-index: var(--z-panel);
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+}
+
+#verbs-panel.panel-visible {
+  transform: translateX(0);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.panel-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+/* Panel Overlay */
+#panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+#panel-overlay.overlay-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==================== */
+/* Verb Form             */
+/* ==================== */
+
+.add-verb-section {
+  margin-bottom: var(--space-xl);
+}
+
+.add-verb-section h4,
+.saved-verbs-section h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-md);
+}
+
+.verb-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-row {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.form-row input {
+  flex: 1;
+}
+
+.verb-form input {
+  padding: 0.625rem 0.875rem;
+  font-size: var(--font-size-sm);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  transition: border-color var(--transition);
+  font-family: inherit;
+}
+
+.verb-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.verb-form input::placeholder {
+  color: var(--gray-400);
+}
+
+.verb-form .btn {
+  margin-top: var(--space-sm);
+}
+
+/* ==================== */
+/* Saved Verbs           */
+/* ==================== */
+
+.saved-verbs-section h4 span {
+  font-weight: 400;
+  color: var(--gray-400);
+}
+
+#verbs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.verb-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  position: relative;
+}
+
+.verb-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+}
+
+.verb-forms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.verb-tag {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+.verb-tag.base {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.verb-example {
+  font-size: var(--font-size-sm);
+  color: var(--gray-600);
+  font-style: italic;
+  margin-bottom: var(--space-xs);
+}
+
+.verb-translation {
+  font-size: var(--font-size-xs);
+  color: var(--gray-400);
+}
+
+.delete-verb-btn {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  padding: var(--space-xs);
+  transition: color var(--transition);
+}
+
+.delete-verb-btn:hover {
+  color: var(--error);
+}
+
+/* ==================== */
+/* Responsive            */
+/* ==================== */
+
+@media (max-width: 640px) {
+  #verbs-panel {
+    width: 100%;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}

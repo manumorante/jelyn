@@ -1,0 +1,11 @@
+{
+  "name": "english-learning-app",
+  "version": "1.0.0",
+  "description": "Simple English learning app with grammar lessons and quizzes",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve . -l 3000"
+  },
+  "keywords": ["english", "learning", "education"],
+  "license": "MIT"
+}

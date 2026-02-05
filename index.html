@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>English Learning App</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <div id="app">
-    <!-- Login Screen -->
+    <!-- ==================== -->
+    <!-- Login Screen         -->
+    <!-- ==================== -->
     <div id="login-screen" class="screen active">
       <div class="welcome-container">
         <h1>Learn English</h1>
@@ -21,12 +23,14 @@
       </div>
     </div>
 
-    <!-- Home Screen (Topic Selection) -->
+    <!-- ==================== -->
+    <!-- Home Screen          -->
+    <!-- ==================== -->
     <div id="home-screen" class="screen">
-      <!-- Fixed Header -->
-      <header id="header">
-        <div class="student-info">
-          <span id="display-name"></span>
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <span id="display-name" class="header-title"></span>
           <div class="header-right">
             <span class="points-badge"><span id="points">0</span> pts</span>
             <button id="settings-btn" class="icon-btn" title="My Verbs">
@@ -38,8 +42,8 @@
         </div>
       </header>
 
-      <!-- Custom Verbs Panel (Slide-in) -->
-      <aside id="verbs-panel" class="panel-hidden">
+      <!-- Verbs Panel -->
+      <aside id="verbs-panel">
         <div class="panel-header">
           <h3>My Custom Verbs</h3>
           <button id="close-panel" class="icon-btn">
@@ -49,9 +53,8 @@
             </svg>
           </button>
         </div>
-
         <div class="panel-content">
-          <!-- Add New Verb Form -->
+          <!-- Add Verb Form -->
           <div class="add-verb-section">
             <h4>Add New Verb</h4>
             <div class="verb-form">
@@ -68,19 +71,14 @@
               <button id="add-verb-btn" class="btn primary">Add Verb</button>
             </div>
           </div>
-
-          <!-- Saved Verbs List -->
+          <!-- Saved Verbs -->
           <div class="saved-verbs-section">
             <h4>Saved Verbs <span id="verb-count">(0)</span></h4>
-            <div id="verbs-list">
-              <!-- Verbs loaded dynamically -->
-            </div>
+            <div id="verbs-list"></div>
           </div>
         </div>
       </aside>
-
-      <!-- Panel Overlay -->
-      <div id="panel-overlay" class="overlay-hidden"></div>
+      <div id="panel-overlay"></div>
 
       <!-- Home Content -->
       <main id="home-content">
@@ -89,9 +87,8 @@
           <p class="home-subtitle">Select what you want to learn today</p>
         </div>
 
-        <!-- Topic Categories -->
         <div class="topic-categories">
-          <!-- Grammar Category -->
+          <!-- Grammar -->
           <section class="category-section">
             <h3 class="category-title">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -143,7 +140,7 @@
             </div>
           </section>
 
-          <!-- Skills Category -->
+          <!-- Skills -->
           <section class="category-section">
             <h3 class="category-title">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -174,34 +171,35 @@
       </main>
     </div>
 
-    <!-- Lesson Screen -->
+    <!-- ==================== -->
+    <!-- Lesson Screen        -->
+    <!-- ==================== -->
     <div id="lesson-screen" class="screen">
-      <!-- Lesson Header -->
-      <header id="lesson-header">
-        <div class="lesson-header-content">
-          <button id="back-home" class="icon-btn" title="Back to Topics">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-          </button>
-          <h1 id="lesson-title">Present Simple</h1>
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="header-left">
+            <button id="back-home" class="icon-btn" title="Back to Topics">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <h1 id="lesson-title" class="header-title">Lesson</h1>
+          </div>
           <div class="header-right">
             <span class="points-badge"><span id="lesson-points">0</span> pts</span>
           </div>
         </div>
       </header>
 
-      <!-- Content Area -->
+      <!-- Content -->
       <main id="lesson-content-area">
         <!-- Lesson View -->
         <div id="lesson-view" class="view active">
           <div class="lesson-actions">
             <button id="quiz-toggle" class="btn primary">Take Quiz</button>
           </div>
-
-          <div id="lesson-content">
-            <!-- Content loaded dynamically -->
-          </div>
+          <div id="lesson-content"></div>
         </div>
 
         <!-- Quiz View -->
@@ -215,17 +213,14 @@
             <div id="quiz-progress">
               <span id="question-number">1</span> / <span id="total-questions">5</span>
             </div>
-
             <div id="question-area">
               <p id="question-text"></p>
               <div id="options-container"></div>
             </div>
-
             <div id="feedback" class="hidden"></div>
             <button id="next-question" class="btn primary hidden">Next Question</button>
           </div>
 
-          <!-- Quiz Results -->
           <div id="quiz-results" class="hidden">
             <div class="results-content">
               <h3>Quiz Complete!</h3>
@@ -240,6 +235,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
