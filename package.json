@@ -4,8 +4,17 @@
   "description": "Simple English learning app with grammar lessons and quizzes",
   "type": "module",
   "scripts": {
-    "dev": "npx serve . -l 3000"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": ["english", "learning", "education"],
-  "license": "MIT"
+  "keywords": [
+    "english",
+    "learning",
+    "education"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
 }
