@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Learning App</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="welcome-container">
+        <h1>Learn English</h1>
+        <p class="subtitle">Start your journey</p>
+        <div class="input-group">
+          <label for="student-name">What's your name?</label>
+          <input type="text" id="student-name" placeholder="Enter your name" autocomplete="off">
+        </div>
+        <button id="start-btn" class="btn primary" disabled>Begin Learning</button>
+      </div>
+    </div>
+
+    <!-- Home Screen (Topic Selection) -->
+    <div id="home-screen" class="screen">
+      <!-- Fixed Header -->
+      <header id="header">
+        <div class="student-info">
+          <span id="display-name"></span>
+          <div class="header-right">
+            <span class="points-badge"><span id="points">0</span> pts</span>
+            <button id="settings-btn" class="icon-btn" title="My Verbs">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Custom Verbs Panel (Slide-in) -->
+      <aside id="verbs-panel" class="panel-hidden">
+        <div class="panel-header">
+          <h3>My Custom Verbs</h3>
+          <button id="close-panel" class="icon-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <div class="panel-content">
+          <!-- Add New Verb Form -->
+          <div class="add-verb-section">
+            <h4>Add New Verb</h4>
+            <div class="verb-form">
+              <div class="form-row">
+                <input type="text" id="verb-base" placeholder="Base form (e.g., eat)">
+                <input type="text" id="verb-third" placeholder="He/She (e.g., eats)">
+              </div>
+              <div class="form-row">
+                <input type="text" id="verb-past" placeholder="Past (e.g., ate)">
+                <input type="text" id="verb-participle" placeholder="Participle (e.g., eaten)">
+              </div>
+              <input type="text" id="verb-example" placeholder="Example sentence using ___ for blank">
+              <input type="text" id="verb-translation" placeholder="Meaning or context (optional)">
+              <button id="add-verb-btn" class="btn primary">Add Verb</button>
+            </div>
+          </div>
+
+          <!-- Saved Verbs List -->
+          <div class="saved-verbs-section">
+            <h4>Saved Verbs <span id="verb-count">(0)</span></h4>
+            <div id="verbs-list">
+              <!-- Verbs loaded dynamically -->
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Panel Overlay -->
+      <div id="panel-overlay" class="overlay-hidden"></div>
+
+      <!-- Home Content -->
+      <main id="home-content">
+        <div class="home-header">
+          <h2>Choose a Topic</h2>
+          <p class="home-subtitle">Select what you want to learn today</p>
+        </div>
+
+        <!-- Topic Categories -->
+        <div class="topic-categories">
+          <!-- Grammar Category -->
+          <section class="category-section">
+            <h3 class="category-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+              </svg>
+              Grammar
+            </h3>
+            <div class="topic-grid">
+              <button class="topic-card" data-topic="present-simple">
+                <div class="topic-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                  </svg>
+                </div>
+                <div class="topic-info">
+                  <span class="topic-name">Present Simple</span>
+                  <span class="topic-desc">Daily routines & facts</span>
+                </div>
+                <span class="topic-arrow">→</span>
+              </button>
+
+              <button class="topic-card" data-topic="past-simple">
+                <div class="topic-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 8,14"/>
+                  </svg>
+                </div>
+                <div class="topic-info">
+                  <span class="topic-name">Past Simple</span>
+                  <span class="topic-desc">Completed actions</span>
+                </div>
+                <span class="topic-arrow">→</span>
+              </button>
+
+              <button class="topic-card" data-topic="future">
+                <div class="topic-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+                <div class="topic-info">
+                  <span class="topic-name">Future Tenses</span>
+                  <span class="topic-desc">Will & Going to</span>
+                </div>
+                <span class="topic-arrow">→</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- Skills Category -->
+          <section class="category-section">
+            <h3 class="category-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+              Skills
+            </h3>
+            <div class="topic-grid">
+              <button class="topic-card" data-topic="listening">
+                <div class="topic-icon listening">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 18v-6a9 9 0 0118 0v6"/>
+                    <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5z"/>
+                    <path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z"/>
+                  </svg>
+                </div>
+                <div class="topic-info">
+                  <span class="topic-name">Listening</span>
+                  <span class="topic-desc">Audio comprehension</span>
+                </div>
+                <span class="topic-arrow">→</span>
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Lesson Screen -->
+    <div id="lesson-screen" class="screen">
+      <!-- Lesson Header -->
+      <header id="lesson-header">
+        <div class="lesson-header-content">
+          <button id="back-home" class="icon-btn" title="Back to Topics">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <h1 id="lesson-title">Present Simple</h1>
+          <div class="header-right">
+            <span class="points-badge"><span id="lesson-points">0</span> pts</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main id="lesson-content-area">
+        <!-- Lesson View -->
+        <div id="lesson-view" class="view active">
+          <div class="lesson-actions">
+            <button id="quiz-toggle" class="btn primary">Take Quiz</button>
+          </div>
+
+          <div id="lesson-content">
+            <!-- Content loaded dynamically -->
+          </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quiz-view" class="view">
+          <div class="quiz-header">
+            <h2>Quiz Time</h2>
+            <button id="back-to-lesson" class="btn secondary">← Back to Lesson</button>
+          </div>
+
+          <div id="quiz-container">
+            <div id="quiz-progress">
+              <span id="question-number">1</span> / <span id="total-questions">5</span>
+            </div>
+
+            <div id="question-area">
+              <p id="question-text"></p>
+              <div id="options-container"></div>
+            </div>
+
+            <div id="feedback" class="hidden"></div>
+            <button id="next-question" class="btn primary hidden">Next Question</button>
+          </div>
+
+          <!-- Quiz Results -->
+          <div id="quiz-results" class="hidden">
+            <div class="results-content">
+              <h3>Quiz Complete!</h3>
+              <p class="score-display">You scored <span id="quiz-score">0</span> out of <span id="quiz-total">5</span></p>
+              <p class="points-earned">+<span id="earned-points">0</span> points!</p>
+              <button id="retry-quiz" class="btn secondary">Try Again</button>
+              <button id="finish-quiz" class="btn primary">Continue Learning</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
